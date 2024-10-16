@@ -1,51 +1,50 @@
-BMI and Body Fat Calculator
-Description
-This is a desktop application written in C++ that calculates a person's Body Mass Index (BMI) and body fat percentage. The application includes a simple graphical user interface (GUI) where users can input their name, height, weight, age, gender, and body fat percentage. Based on this data, the application calculates and displays the BMI and the corresponding category, and generates a text report with all the results.
+# BMI and Body Fat Calculator
 
-Features
-BMI Calculation: Calculates BMI based on the input height and weight.
-BMI Classification: Displays the BMI category (e.g., underweight, normal weight, overweight, obese).
-Body Fat Input: Allows the user to input body fat percentage and includes it in the report.
-Report Generation: Automatically generates a detailed text report with all entered data and results.
-Graphical Interface: Features a simple and user-friendly interface built using the Windows API.
-Prerequisites
-C++ Compiler: To compile and run the code, you will need a C++ compiler that supports the Windows API, such as MinGW or Microsoft Visual Studio.
-Operating System: This application is designed for Windows platforms.
-Installation
-Clone the repository:
+## Description
 
-bash
-Copiar código
-git clone https://github.com/PablitoBueno/prototypeBMI.git
-cd prototypeBMI
-Compile the code:
+This is a desktop application written in C++ that calculates a person's Body Mass Index (BMI) and body fat percentage. The application features a simple graphical user interface (GUI) that allows users to enter personal information such as name, height, weight, age, gender, and body fat percentage. Based on this data, it calculates and displays the BMI and the corresponding category, as well as generates a text report with the results.
 
-Using MinGW:
+## Features
 
-bash
-Copiar código
+- **BMI Calculation**: The application calculates BMI based on the entered height and weight.
+- **BMI Classification**: It provides the BMI category (e.g., underweight, normal, overweight, obese).
+- **Body Fat**: Allows input of body fat percentage and includes it in the calculation.
+- **Report Generation**: Generates a detailed text report that includes all entered information and calculation results.
+- **Graphical Interface**: The application has a user-friendly interface built using the Windows API.
+
+## Prerequisites
+
+- **C++ Compiler**: To compile and run the code, you need a C++ compiler that supports the Windows API, such as MinGW or Microsoft Visual Studio.
+- **Operating System**: The application is designed for Windows.
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/PablitoBueno/prototypeBMI.git
+Compile the code: Using MinGW:
+
 g++ -o BMICalculator main.cpp -mwindows
-Or using Visual Studio: Create a new project, add the source code (main.cpp), and compile it within the IDE.
+Or using Visual Studio, create a new project and add the source code to the project.
 
-Run the application: After compiling, execute the generated BMICalculator.exe file.
+Run the application: After compiling, execute the generated executable file BMI_App.exe.
 
 Usage
 Interface:
 Fill in the input fields:
 
-Name: Enter your name.
-Height: Input your height in meters (e.g., 1.75).
-Weight: Input your weight in kilograms (e.g., 70).
-Age: Enter your age in years.
+Name: Your name.
+Height: Your height in meters (e.g., 1.75).
+Weight: Your weight in kilograms (e.g., 70).
+Age: Your age in years.
 Gender: Select your gender (Male or Female).
-Body Fat (%): Optionally, input your body fat percentage.
-Calculate BMI:
+Body Fat (%): Your body fat percentage (optional).
+Calculate BMI: Click the "Calculate BMI" button to calculate your BMI and display the result.
 
-Click the "Calculate BMI" button to calculate and display your BMI and its classification.
-Generate Report:
+Generate Report: Click the "Generate Report" button to create a text file named BMI_Report.txt that contains all the entered data and the results.
 
-Click the "Generate Report" button to create a text file named BMI_Report.txt, which will contain all entered data and the calculation results.
-Example of Generated Report:
+Example of Generated Report
+
 BMI and Body Fat Report
 -----------------------
 Name: John Doe
@@ -55,12 +54,10 @@ Age: 25 years
 Gender: Male
 BMI: 22.86
 BMI Category: Normal weight
-Body Fat Percentage: 15.0%
+Body Fat Percentage: 15.0
 
 Limitations
-This project is created for educational purposes only and is part of a student's learning experience in computer science.
-
-It is not intended for medical or commercial use.
-The calculations and classifications may not adhere to medical standards for health assessments.
+This application is designed for educational purposes only and is a project created by a student learning computer science.
+The application is not intended for commercial use and may not meet medical standards for health assessments.
 Contributions
-Feel free to fork this project and submit pull requests for improvements, bug fixes, or new features.
+Feel free to fork the project and submit pull requests for improvements, bug fixes, or new features. mas como eu ajusto a essa descrição?
