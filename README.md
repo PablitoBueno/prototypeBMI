@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a desktop application written in C++ that calculates a person's Body Mass Index (BMI) and body fat percentage. The application features a simple graphical user interface (GUI) that allows users to enter personal information such as name, height, weight, age, gender, and body fat percentage. Based on this data, it calculates and displays the BMI and the corresponding category, as well as generates a text report with the results.
+This is a desktop application written in C++ that calculates a person's Body Mass Index (BMI) and body fat percentage. The application features a simple graphical user interface (GUI) that allows users to enter personal information such as name, height, weight, age, gender, and body fat percentage. Based on this data, it calculates and displays the BMI and the corresponding category, as well as generates a text report with the results. The application was developed using **Dev C++**.
 
 ## Features
 
@@ -15,6 +15,7 @@ This is a desktop application written in C++ that calculates a person's Body Mas
 ## Prerequisites
 
 - **C++ Compiler**: To compile and run the code, you need a C++ compiler that supports the Windows API, such as MinGW or Microsoft Visual Studio.
+- **Development Environment**: The code was developed using **Dev C++**, so it is recommended to use it or any other compatible IDE for seamless compilation.
 - **Operating System**: The application is designed for Windows.
 
 ## Installation
@@ -22,29 +23,44 @@ This is a desktop application written in C++ that calculates a person's Body Mas
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/PablitoBueno/prototypeBMI.git
-Compile the code: Using MinGW:
+   cd prototypeBMI
+   ```
 
-g++ -o BMICalculator main.cpp -mwindows
-Or using Visual Studio, create a new project and add the source code to the project.
+2. **Compile the code**:
+   - Using **Dev C++**:
+     - Open the `main.cpp` file in **Dev C++**.
+     - Go to **Execute > Compile & Run** to build the project.
+  
+   - Alternatively, using MinGW:
+     ```bash
+     g++ -o BMI_App main.cpp -mwindows
+     ```
 
-Run the application: After compiling, execute the generated executable file BMI_App.exe.
+   - Or using Visual Studio: Create a new project, add the source code (`main.cpp`), and compile it within the IDE.
 
-Usage
-Interface:
-Fill in the input fields:
+3. **Run the application**:
+   After compiling, execute the generated `BMI_App.exe` file.
 
-Name: Your name.
-Height: Your height in meters (e.g., 1.75).
-Weight: Your weight in kilograms (e.g., 70).
-Age: Your age in years.
-Gender: Select your gender (Male or Female).
-Body Fat (%): Your body fat percentage (optional).
-Calculate BMI: Click the "Calculate BMI" button to calculate your BMI and display the result.
+## Usage
 
-Generate Report: Click the "Generate Report" button to create a text file named BMI_Report.txt that contains all the entered data and the results.
+### Interface:
+- Fill in the input fields:
+  - **Name**: Your name.
+  - **Height**: Your height in meters (e.g., 1.75).
+  - **Weight**: Your weight in kilograms (e.g., 70).
+  - **Age**: Your age in years.
+  - **Gender**: Select your gender (Male or Female).
+  - **Body Fat (%)**: Your body fat percentage (optional).
 
-Example of Generated Report
+### Calculate BMI:
+- Click the "Calculate BMI" button to calculate your BMI and display the result.
 
+### Generate Report:
+- Click the "Generate Report" button to create a text file named `BMI_Report.txt` that contains all the entered data and the results.
+
+## Example of Generated Report
+
+```
 BMI and Body Fat Report
 -----------------------
 Name: John Doe
@@ -54,10 +70,14 @@ Age: 25 years
 Gender: Male
 BMI: 22.86
 BMI Category: Normal weight
-Body Fat Percentage: 15.0
+Body Fat Percentage: 15.0%
+```
 
-Limitations
-This application is designed for educational purposes only and is a project created by a student learning computer science.
+## Limitations
+
+This application is designed for educational purposes only and is a project created by a student learning computer science.  
 The application is not intended for commercial use and may not meet medical standards for health assessments.
-Contributions
-Feel free to fork the project and submit pull requests for improvements, bug fixes, or new features. mas como eu ajusto a essa descrição?
+
+## Contributions
+
+Feel free to fork the project and submit pull requests for improvements, bug fixes, or new features.
