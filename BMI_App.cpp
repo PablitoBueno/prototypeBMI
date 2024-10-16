@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <string>
 #include <sstream>
-#include <fstream> // Para salvar o relatório em arquivo
+#include <fstream> // For saving the report to a file
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// Classe para representar a pessoa
+// Class to represent a person
 class Person {
 private:
     float height, weight, bmi, bodyFatPercentage;
@@ -17,7 +17,7 @@ private:
     string name, gender;
     bool hasBodyFat;
 
-    // Função interna para calcular o BMI
+    // Internal function to calculate the BMI
     void calculateBMI() {
         bmi = weight / (height * height);
     }
@@ -27,8 +27,8 @@ public:
 
     // Setters
     void setName(const string& n) { name = n; }
-    void setHeight(float h) { height = h; calculateBMI(); }  // Atualiza BMI automaticamente ao definir a altura
-    void setWeight(float w) { weight = w; calculateBMI(); }  // Atualiza BMI automaticamente ao definir o peso
+    void setHeight(float h) { height = h; calculateBMI(); }  // Updates BMI automatically when setting height
+    void setWeight(float w) { weight = w; calculateBMI(); }  // Updates BMI automatically when setting weight
     void setAge(int a) { age = a; }
     void setGender(const string& g) { gender = g; }
     void setBodyFat(float bf) {
@@ -50,7 +50,7 @@ public:
     bool hasBodyFatData() const { return hasBodyFat; }
     float getBodyFatPercentage() const { return bodyFatPercentage; }
 
-    // Retorna a categoria do BMI com base no valor atual
+    // Returns the BMI category based on the current value
     string getBMICategory() const {
         if (bmi < 17) return "Very underweight";
         else if (bmi >= 17 && bmi < 18.49) return "Underweight";
@@ -62,7 +62,7 @@ public:
     }
 };
 
-// Classe para a interface da calculadora
+// Class for the calculator interface
 class Interface {
 private:
     HWND hWnd, hName, hHeight, hWeight, hAge, hGender, hBodyFat;
@@ -71,7 +71,7 @@ private:
     static LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
     void addControls(HWND);
     void calculateBMI();
-    void generateReport(); // Nova função para gerar o relatório
+    void generateReport(); // New function to generate the report
     void showError(const string& message);
     void showBMIDialog(const string& result);
     float parseInput(const string& input);
@@ -81,7 +81,7 @@ public:
     void show();
 };
 
-// Construtor da classe Interface
+// Constructor of the Interface class
 Interface::Interface(HINSTANCE hInst) {
     WNDCLASS wc = { 0 };
     wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
@@ -125,7 +125,7 @@ float Interface::parseInput(const string& input) {
     return value;
 }
 
-// Função para calcular o BMI e exibir o resultado
+// Function to calculate the BMI and display the result
 void Interface::calculateBMI() {
     char name[30], height[10], weight[10], age[10], bodyFat[10];
     int genderSelected = SendMessage(hGender, CB_GETCURSEL, 0, 0);
@@ -164,7 +164,7 @@ void Interface::calculateBMI() {
     showBMIDialog(resultStream.str());
 }
 
-// Função para gerar o relatório em arquivo de texto
+// Function to generate the report in a text file
 void Interface::generateReport() {
     ofstream reportFile("BMI_Report.txt");
     if (reportFile.is_open()) {
@@ -189,7 +189,7 @@ void Interface::generateReport() {
     }
 }
 
-// Função para adicionar controles na interface
+// Function to add controls to the interface
 void Interface::addControls(HWND hWnd) {
     CreateWindow("static", "Name:", WS_VISIBLE | WS_CHILD, 50, 20, 150, 20, hWnd, NULL, NULL, NULL);
     hName = CreateWindow("edit", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 200, 20, 150, 20, hWnd, NULL, NULL, NULL);
@@ -198,56 +198,46 @@ void Interface::addControls(HWND hWnd) {
     CreateWindow("static", "Weight (in kg):", WS_VISIBLE | WS_CHILD, 50, 120, 150, 20, hWnd, NULL, NULL, NULL);
     hWeight = CreateWindow("edit", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 200, 120, 100, 20, hWnd, NULL, NULL, NULL);
     CreateWindow("static", "Age:", WS_VISIBLE | WS_CHILD, 50, 170, 150, 20, hWnd, NULL, NULL, NULL);
-    hAge = CreateWindow("edit", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 200, 170, 100, 20, hWnd, NULL, NULL, NULL);
+    hAge = CreateWindow("edit", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 200, 170, 50, 20, hWnd, NULL, NULL, NULL);
     CreateWindow("static", "Gender:", WS_VISIBLE | WS_CHILD, 50, 220, 150, 20, hWnd, NULL, NULL, NULL);
-    hGender = CreateWindow("combobox", "", WS_VISIBLE | WS_CHILD | CBS_DROPDOWN, 200, 220, 100, 100, hWnd, NULL, NULL, NULL);
+    hGender = CreateWindow("combobox", "", WS_VISIBLE | WS_CHILD | WS_BORDER | CBS_DROPDOWNLIST, 200, 220, 100, 20, hWnd, NULL, NULL, NULL);
     SendMessage(hGender, CB_ADDSTRING, 0, (LPARAM)"Male");
     SendMessage(hGender, CB_ADDSTRING, 0, (LPARAM)"Female");
-    SendMessage(hGender, CB_SETCURSEL, 0, 0); // Preselect "Male"
+    SendMessage(hGender, CB_SETCURSEL, 0, 0); // Set default selection to Male
     CreateWindow("static", "Body Fat (%):", WS_VISIBLE | WS_CHILD, 50, 270, 150, 20, hWnd, NULL, NULL, NULL);
     hBodyFat = CreateWindow("edit", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 200, 270, 100, 20, hWnd, NULL, NULL, NULL);
-    
-    CreateWindow("button", "Calculate BMI", WS_VISIBLE | WS_CHILD, 50, 320, 150, 30, hWnd, (HMENU)1, NULL, NULL);
-    CreateWindow("button", "Generate Report", WS_VISIBLE | WS_CHILD, 200, 320, 150, 30, hWnd, (HMENU)2, NULL, NULL);
+    CreateWindow("button", "Calculate BMI", WS_VISIBLE | WS_CHILD, 50, 320, 100, 30, hWnd, (HMENU)1, NULL, NULL);
+    CreateWindow("button", "Generate Report", WS_VISIBLE | WS_CHILD, 200, 320, 120, 30, hWnd, (HMENU)2, NULL, NULL);
 }
 
-// Callback da janela
-LRESULT CALLBACK Interface::WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
-    Interface* pThis;
-    if (msg == WM_CREATE) {
-        CREATESTRUCT* pCreate = (CREATESTRUCT*)lp;
-        pThis = (Interface*)pCreate->lpCreateParams;
-        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)pThis);
-        pThis->addControls(hWnd);
-    } else {
-        pThis = (Interface*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
-        if (!pThis) return DefWindowProc(hWnd, msg, wp, lp);
+// Window Procedure to handle messages
+LRESULT CALLBACK Interface::WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    static Interface* instance = nullptr;
+    if (msg == WM_NCREATE) {
+        instance = reinterpret_cast<Interface*>(lParam);
     }
-    
-    switch (msg) {
-    case WM_COMMAND:
-        switch (wp) {
-        case 1:
-            pThis->calculateBMI();
+    if (instance) {
+        switch (msg) {
+        case WM_COMMAND:
+            if (LOWORD(wParam) == 1) {
+                instance->calculateBMI();
+            }
+            else if (LOWORD(wParam) == 2) {
+                instance->generateReport(); // Handle report generation
+            }
             break;
-        case 2:
-            pThis->generateReport();
+        case WM_DESTROY:
+            PostQuitMessage(0);
             break;
         }
-        break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(hWnd, msg, wp, lp);
     }
-    return 0;
+    return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-// Função main para criar a interface
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow) {
-    Interface app(hInst);
+// Main function of the application
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
+    Interface app(hInstance);
+    app.addControls(app.hWnd);
     app.show();
     return 0;
 }
-
